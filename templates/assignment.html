@@ -1,0 +1,32 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class=" container">
+    {% for message in messages %}
+    <h5>
+      <div class="alert alert-success " style="text-align:left;">
+          {{ message }}
+      </div>
+  </h5>
+      {% endfor %} 
+    <form method="post" action="{% url 'doassignment' %}">
+
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="assignment" placeholder="ENTER ASSIGNEMENT" class="form-control" required>
+        </div>
+        <div class="form-group">
+                <label>submit date</label>
+                <input type="date" name="edate"  class="form-control" required>  
+        </div>
+        <div class="form-group">
+            <Label>STUDENT NAME</Label>
+           <select name="student" class="form-control">
+            {% for i in data %}
+            <option value="{{i.user.id}}">{{i.firstname}}</option>
+            {% endfor %}
+           </select>    
+       </div>
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+    </form>
+</div>
+{% endblock %} 

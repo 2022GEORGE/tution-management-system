@@ -1,0 +1,35 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-bordered  table-striped" style="text-align: center;">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>course</th>
+                <th>fee</th>
+                <th>duration</th>
+                <th>syllabus</th>
+                <th colspan="2">action</th>
+            </tr>
+        </thead>
+        <tbody class="bg-light table-bordered ">
+            {% for i in key %}
+            <tr>
+                <td class="bg-primary">{{i.id}}</td>
+                <td>{{i.course_name}}</td>
+                <td>{{i.Course_fee}}</td>
+                <td>{{i.course_duration}}</td>
+                <td><a href="{{i.syallabus.url}}"> <img src="{{i.syallabus.url}}" style="width: 200px; height: 200px;"></a> </td>
+                <td><a href="{% url 'editcourse' i.id %} " class="text-dark">EDIT</a> </td>
+                <td><a href="{% url 'deletecourse' i.id %}" class="text-dark">DELETE</a> </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function fun(){
+        window.print()
+    }
+</script>
+{% endblock %}

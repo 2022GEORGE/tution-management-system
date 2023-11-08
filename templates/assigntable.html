@@ -1,0 +1,29 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<div class="table table-responsive">
+    <table class="table ">
+        <thead>
+            <tr>
+               
+                <th>COURSE</th>
+                <th>COURSE DURATION</th>
+                <th>DEPARTMENT</th>
+                <th>NAME</th>
+                <th>ACTION</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in key %}
+            <tr>
+                <td>{{i.courseid.course_name}}</td>
+                <td>{{i.courseid.course_duration}}</td>
+                <td>{{i.departmentid.department}}</td>
+                <td>{{i.teacherid.firstname}} {{i.teacherid.lastname}}</td>
+                <th><a href="{% url 'deleteassign' i.id %}"><button class="btn btn-primary">DELETE</button></a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

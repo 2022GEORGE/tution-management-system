@@ -1,0 +1,21 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<div class="container">
+    {% for message in messages %}
+  <h5>
+    <div class="alert alert-success " style="text-align:center;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %} 
+    <form method="post" action="{% url 'adddepartment' %}">
+        {% csrf_token %}
+        <h3 style="text-align: center;" class="bg-warning">ADD DEPARTMENT</h3>
+        <div class="form-group">
+            <label>DEPARTMENT NAME:</label>
+            <input type="text" name="dep" placeholder="ENTER THE DEPARTMENT NAME" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary form-control">ADD DEPARTMENT</button>
+    </form>
+</div>
+{% endblock %}

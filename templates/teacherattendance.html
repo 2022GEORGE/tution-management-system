@@ -1,0 +1,34 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<form action="{% url 'present1'  %}"  method="post">
+{% csrf_token %}
+{% for message in messages %}
+  <h5>
+    <div class="alert alert-success " style="text-align:left;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %} 
+    <div class="form-group">
+        <label >TEACHER NAME:</label>
+        <select class="form-control" name="username">
+            {% for i  in data %}
+            <option value="{{i.userid.id}}">{{i.userid.username}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>date:</label>
+        <input type="date" name="date" class="form-control">
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col"><Label>PRESENT</Label><input type="radio" value="1" name="attendance">
+        <Label>ABSENT</Label><input type="radio" value="0" name="attendance"></div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mx-auto d-block">SUBMIT</button>
+
+</form>
+{% endblock %}
+ 

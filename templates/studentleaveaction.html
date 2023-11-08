@@ -1,0 +1,40 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>date</th>
+                <th>NAME</th>
+                <th>USER TYPE</th>
+                <th>REASON</th>
+                <TH>ACTION</TH>
+            </tr>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{i.date}}</td>
+                    <td>{{i.userid.first_name}}</td>
+                   <td class="text-dark">
+                    {% if i.userid.user_type == '2' %} TEACHER {% endif %}
+                    {% if i.userid.user_type == '3' %} STUDENT {% endif %}
+                   </td>
+                    <td>{{i.reason}}</td>
+                    {% if i.status == 1 %}
+                    <td><a href="{% url 'leaveapprove' i.id %}"> <button type="button" class="btn btn-primary" >APPROVE</button></a>
+                        <a href="{% url 'leavedisapprove' i.id %}"> <button type="button" class="btn btn-success" >DISAPPROVE</button></td></a>
+                    {% endif %}
+                    {% if i.status == 0 %}
+                    <td><button type="button" class="btn btn-danger" disabled>DISAPPROVED</button></td>
+                    {% endif %}
+                    {% if i.status == 2 %}
+                    <td><button type="button" class="btn btn-primary" disabled>APPROVED</button></td>
+                    {% endif %}   
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </thead>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'studentnav.html' %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>date</th>
+                <th>attendance</th>
+            </tr>
+            <tbody>
+                {% for i in data %}
+                {% if i.userid.id == current %}
+                <tr>
+                    <td>{{i.date}}</td>
+                    {% if i.status == 1 %}
+                    <td><button type="button" class="btn btn-primary" disabled>PRESENT</button></td>
+                    {% endif %}
+                    {% if i.status == 0 %}
+                    <td><button type="button" class="btn btn-danger" disabled>ABSENT</button></td>
+                    {% endif %}   
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </thead>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'adminnav.html' %}
+            {% block content %}
+            <div class="container">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>name</th>
+                                <th>user type</th>
+                                <th>course</th>
+                                <th>email</th>
+                                <th>profile</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>{{i.first_name}} {{i.last_name}}</td>
+                                <td>{% if i.usertype == 2%}TEACHER{% endif %}{% if i.usertype == 3%}STUDENT{% endif %}</td>
+                                <th>{{i.courseid.course_name}}</th>
+                                <td>{{i.email}}</td>
+                                <td><img src='{{i.image.url}}' style="border:1px solid orange; border-radius:35px; width:45px; height:45px; " id="profile" ></td>
+                                <td>{% if i.status == 1 %}
+                                    <a href="{% url 'approve' i.id %}"><button type="button" class="btn btn-primary">APPROVE</button></a>
+                                    <a href="{% url 'disapprove' i.id %}"><button type="button" class="btn btn-danger">DISAPPROVE</button></a>
+                                    {% endif %}
+                                    {% if i.status == 2%}
+                                    <button type="button" class="btn btn-primary" disabled>APPROVED</button>
+                                    {% endif %}
+                                    {% if i.status == 0%}
+                                    <button type="button" class="btn btn-danger" disabled>DISAPPROVED</button>
+                                    {% endif %}
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endblock %}

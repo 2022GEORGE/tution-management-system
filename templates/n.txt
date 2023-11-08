@@ -1,0 +1,106 @@
+class User(AbstractUser):
+    HOD = '1'
+    STAFF = '2'
+    STUDENT = '3'
+    
+    EMAIL_TO_USER_TYPE_MAP = {
+        'hod': HOD,
+        'staff': STAFF,
+        'student': STUDENT
+    }
+
+    user_type_data = ((HOD, "HOD"), (STAFF, "Staff"), (STUDENT, "Student"))
+    user_type = models.CharField(default=1, choices=user_type_data, max_length=10)
+    
+class teacher(models.Model):
+    password=models.CharField(max_length=255,null=True)
+    last_login=models.DateTimeField(auto_now=True,null=True)
+    joindate=models.DateTimeField(auto_now_add=True,null=True)
+    username=models.CharField(max_length=255,null=True)
+    firstname=models.CharField(max_length=255,null=True)
+    lastname=models.CharField(max_length=255,null=True)
+    email=models.EmailField(null=True)
+    age=models.IntegerField(null=True)
+    contact=models.CharField(max_length=255,null=True)
+    image=models.FileField(null=True)
+    usertype=models.CharField(max_length=255,null=True)
+class student(models.Model):
+    password=models.CharField(max_length=255,null=True)
+    last_login=models.DateTimeField(auto_now=True,null=True)
+    joindate=models.DateTimeField(auto_now_add=True,null=True)
+    username=models.CharField(max_length=255,null=True)
+    firstname=models.CharField(max_length=255,null=True)
+    lastname=models.CharField(max_length=255,null=True)
+    email=models.EmailField(null=True)
+    age=models.IntegerField(null=True)
+    contact=models.CharField(max_length=255,null=True)
+    image=models.FileField(null=True)
+    usertype=models.IntegerField(null=True)    
+
+
+    ..............---------------------
+     user=CustomUser()
+        user.first_name=first_name
+        user.last_name=last_name
+        user.set_password(password)
+        user.username=user_name
+        user.user_type=user_type
+        user.email=email_id
+        user.save()
+        ........................................................................................
+        if user_type =='2':
+            user2=teacher()
+            user2.firstname=first_name
+            user2.lastname=last_name
+            user2.username=user_name
+            user2.email=email_id
+            user2.age=age
+            user2.contact=contact
+            user2.image=image
+            user2.user=user
+            user2.save()
+           
+        if user_type =='3':
+            user3=student()
+            user3.firstname=first_name
+            user3.lastname=last_name
+            user3.username=user_name
+            user3.email=email_id
+            user3.age=age
+            user3.contact=contact
+            user3.image=image
+            user3.user=user
+            user3.save()
+            userpass2=passtable()
+            userpass2.password=password
+            userpass2.userid=user
+            userpass2.save()
+            .......................................\\\\\\\\\\\\\\\\\\\]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+            {% extends 'studentnav.html' %}
+{% block content %}
+<div class="container">
+<form class="mx-auto d-block" method="post" action="{% url 'pushassignment' user.id %}" enctype="multipart/form-data">
+   <h3 class="h3 bg-warning">ASSIGNMENT</h3>
+{% csrf_token %}
+
+   <dl>
+    <dt>assignmentst:</dt>
+    <dd class="text-black">{{data.assignment_name}}</dd>
+    <dt>START DATE:</dt>
+    <dd>{{data.start_date}}</dd>
+    <dt>END DATE:</dt>
+    <dd>{{data.end_date}}</dd>
+    <dt>course:</dt>
+    <dd>{{data.courseid.course_name}}</dd>
+   </dl>
+  
+
+   <div class="form-group">
+      <input type="file" name="image" class="form-control" required>
+   </div>
+   <button type="submit" class="form-control btn btn-primary">SUBMIT</button>
+   
+
+</form>
+</div>
+{% endblock %}

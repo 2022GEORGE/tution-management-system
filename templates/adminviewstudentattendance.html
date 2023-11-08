@@ -1,0 +1,27 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>DATE</th>
+                <th>COURSE</th>
+                <th>ATTENDANCE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{i.userid.username}}</td>
+                <td>{{i.date}}</td>
+                <td>{{i.courseid.course_name}}</td>
+                <td>{% if i.status == 0 %} ABSENT {% endif %}
+                    {% if i.status == 1 %}PRESENT {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+           
+        </tbody>
+    </table>
+{% endblock %}

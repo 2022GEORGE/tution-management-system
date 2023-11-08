@@ -1,0 +1,25 @@
+{% extends 'studentnav.html' %}
+{% block content %}
+<div class="container">
+<div class="table-responsive">
+   <table class="table">
+      <thead>
+         <tr>
+            <th>ASSIGNEMENT</th>
+            <th>END DATE</th>
+            <th>ACTION</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for i in data %}
+         <tr>
+            <td>{{i.assignment_name}}</td>
+            <td>{{i.end_date}}</td>
+            <td><a href="{% url 'submitassignmet' i.id %}"><button class="btn btn-primary">SUBMIT</button></a></a></td>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+</div>
+</div>
+{% endblock %}

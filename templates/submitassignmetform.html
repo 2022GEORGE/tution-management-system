@@ -1,0 +1,25 @@
+{% extends 'studentnav.html' %}
+{% block content %}
+<div class="container">
+<form class="mx-auto d-block" method="post" action="{% url 'pushassignment' data.id %}" enctype="multipart/form-data">
+   <h3 class="h3 bg-warning">ASSIGNMENT</h3>
+{% csrf_token %}
+
+    <div class="form-group disabled">
+        <label>ASSIGNMENT:</label>
+        <input type="text" name="name" value="{{data.assignment_name}}" disabled class="form-control">
+    </div>
+    <div class="form-group">
+        <label>END DATE:</label>
+        <input type="date" name="date" value="{{data.end_date|date:'Y-m-d'}}" disabled class="form-control">
+    </div>
+
+   <div class="form-group">
+      <input type="file" name="image" class="form-control" required accept="application/pdf">
+   </div>
+   <button type="submit" class="form-control btn btn-primary">SUBMIT</button>
+   
+
+</form>
+</div>
+{% endblock %}

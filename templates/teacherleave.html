@@ -1,0 +1,17 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class="container">
+    <form method="post" action="{% url 'doteacherleave' %}">
+        {% csrf_token %}
+        <h3 class="h3 bg-warning">APPLY FOR LEAVE</h3>
+        <div class="form-group">
+            <label>DATE</label>
+            <input type="date" name="date" class="form-control">
+        </div>
+        <div class="form-group">
+            <textarea name="reason" placeholder="REASON" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary form-control">SUBMIT</button>
+    </form>
+</div>
+{% endblock %}

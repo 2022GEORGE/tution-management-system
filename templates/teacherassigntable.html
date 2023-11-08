@@ -1,0 +1,13 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class="container">
+    <form method="post" action="{% url 'teacherviewstudentatten' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>select date:</label>
+            <input type="date" name="date" class="form-control" >
+        </div>
+        <button class="btn btn-primary" type="submit">GET</button>
+    </form>
+</div>
+{% endblock %}

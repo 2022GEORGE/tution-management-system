@@ -1,0 +1,25 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class="table-responsive">
+    <table class=" table">
+        <thead>
+            <tr>
+                <th>USERNAME</th>
+                <th>NAME</th>
+                <th>COURSE</th>
+                <th>DATE JOINED</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{i.username}}</td>
+                <td>{{i.firstname}} {{i.lastname}}</td>
+                <td>{{i.courseid.course_name}}</td>
+                <td>{{i.user.date_joined}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>date</th>
+                <th>REASON</th>
+                <TH>ACTION</TH>
+            </tr>
+            <tbody>
+                {% for i in data %}
+                {% if i.userid.id == current %}
+                <tr>
+                    <td>{{i.date}}</td>
+                    <td>{{i.reason}}</td>
+                    {% if i.status == 1 %}
+                    <td><button type="button" class="btn btn-warning" disabled>Processing...</button></td>
+                    {% endif %}
+                    {% if i.status == 2 %}
+                    <td><button type="button" class="btn btn-primary" disabled>APPROVED</button></td>
+                    {% endif %}
+                    {% if i.status == 0 %}
+                    <td><button type="button" class="btn btn-primary" disabled>DISAPPROVED</button></td>
+                    {% endif %}
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </thead>
+    </table>
+</div>
+{% endblock %}

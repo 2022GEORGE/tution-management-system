@@ -1,0 +1,19 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class="container">
+  {% for message in messages %}
+  <h5>
+    <div class="alert alert-success " style="text-align:left;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %} 
+<form method="post" action="{% url 'viewassignment' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>ENTER THE END DATE OF ASSIGNMENT:</label>
+        <input type="date" class="form-control" name="date">
+    </div>
+    <button class="btn btn-primary ">CHECK</button>
+</form>
+{% endblock %}

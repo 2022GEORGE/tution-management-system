@@ -1,0 +1,46 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<div class="container">
+    {% for message in messages %}
+  <h5>
+    <div class="alert alert-danger " style="text-align:left;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %} 
+<form method="post" action="{% url 'addassign' %}">
+    {% csrf_token %}
+    <h3 style="text-align: center;" class="bg-warning">ASSIGN</h3>
+    <div class="form-group">
+        <lable>DEPARTMENT</lable>
+       
+        <select name="department" class="form-control">
+            {% for d in dep %}
+            <option value="{{d.id}}">{{d.department}}</option>
+            {% endfor %}
+        </select>
+       
+    </div>
+    <div class="form-group">
+        <label>SELECT COURSE</label>
+        <select name="course" class="form-control" >
+            {% for i in course %}
+            <option value="{{i.id}}">{{i.course_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>SELECT TEACHER</label>
+        <select name="teacher" class="form-control">
+            {% for t in teacher %}
+            <option value="{{t.id}}">{{t.firstname}} {{t.lastname}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <a href="{% url 'tableassign' %}">
+    <button type="button" class="btn btn-primary f">ASSIGN TABLE</button></a></div>
+    <button type="submit" class="btn btn-primary form-control">ASSIGN</button>
+</form>
+</div>
+{% endblock %}

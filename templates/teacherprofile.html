@@ -1,0 +1,23 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class=" table-responsive">
+
+      <div class="card mx-auto d-block" style="width: 18rem;">
+        <img src="{{data.image.url}}" class="card-img-top" alt="..." style="width: 250px; height: 200px;">
+        <div class="card-body">
+          <h5 class="card-title">PROFILE</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">NAME:&nbsp;{{data.firstname}}</li>
+          <li class="list-group-item">DEPARTMENT:&nbsp;{{data.departmentid.department}}</li>
+          <li class="list-group-item">AGE:&nbsp;{{data.age}}</li>
+          <li class="list-group-item">COURSE:&nbsp;{{data.courseid.course_name}}</li>
+          <li class="list-group-item">EMAIL: &nbsp;{{data.email}}</li>
+          <li class="list-group-item">CONTACT:&nbsp;{{data.contact}}</li>
+        </ul>
+        <div class="card-body">
+            <a href="{% url 'editteacher' %}" class="card-link"><button class="btn btn-primary">EDIT</button></a>
+        </div>
+      </div>
+</div>
+{% endblock %}

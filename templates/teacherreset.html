@@ -1,0 +1,23 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+
+ <div class="container">
+  {% for message in messages %}
+  <h5>
+    <div class="alert alert-success " style="text-align:left;">
+        {{ message }}
+    </div>
+</h5>
+    {% endfor %} 
+    <form class="mx-lg-auto d-block " style="margin-top:100px;" action="{% url 'dogeneration' %}" method="post" >
+      {% csrf_token %}
+      <h3 style="text-align: center;" class="bg-warning">RESET PASSWORD</h3>
+        <div class="form-group">
+            <input type="text" name="username" placeholder="USERNAME">
+            <input type="email" name="email" placeholder="EMAIL">
+        </div>
+           <button type="submit" class="btn btn-primary form-control">GENERATE PASSWORD</button>
+    </form>
+ </div>
+      
+{% endblock %}

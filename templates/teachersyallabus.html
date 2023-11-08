@@ -1,0 +1,25 @@
+{% extends 'teachernav.html' %}
+{% block content %}
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>course</th>
+                    <th>course duration</th>
+                    <th>syallabus</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>{{data.course_name}}</td>
+                    <td>{{data.course_duration}}</td>
+                    <td><a href="{{data.syallabus.url}}"><img src="{{data.syallabus.url}}" style="width: 150px; height:150px;"> </a></td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

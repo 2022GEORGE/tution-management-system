@@ -1,0 +1,35 @@
+{% extends 'adminnav.html' %}
+{% block content %}
+<div class="container">
+    {% for message in messages %}
+    <h5>
+      <div class="alert alert-danger " style="text-align:left;">
+          {{ message }}
+      </div>
+  </h5>
+      {% endfor %} 
+<form method="post" action="{% url 'doeditcourse' data.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3 class="h3">EDIT COURSE</h3>
+    <div class="form-group">
+        <label>COURSE NAME:</label>
+        <input type="text" name="course" value="{{data.course_name}} " class="form-control">
+    </div>
+    <div class="form-group">
+        <label>
+            COURSE FEE
+        </label>
+            <input type="number" name="fee" value="{{data.Course_fee}}" class="form-control"> 
+    </div>
+    <div class="form-group">
+        <label>COURSE DURATION</label>
+        <input type="text" name="duration" value="{{data.course_duration}}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label >syallabus:  </label><img src="{{data.syallabus.url}}" width="100px" height="100px">
+        <input type="file" name="syallabus" class="form-control" accept="application/pdf">
+    </div>
+    <button type="submit" class="btn btn-primary form-control">SUBMIT</button>
+</form>
+</div>
+{% endblock %}
